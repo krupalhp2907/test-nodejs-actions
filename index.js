@@ -69,7 +69,7 @@ async function handleJuspayResponse(req, res) {
     const orderId = req.body.order_id || req.body.orderId
 
     if (orderId == undefined) {
-        return res.json(makeError('order_id is required and should be non-empty.'))
+        return res.json(makeError('order_id is required and should be non-empty'))
     }
 
     try {
