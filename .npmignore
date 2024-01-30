@@ -5,5 +5,5 @@
 !/VERSION
 !/package.json
 !/dist/**/*
-!index.js
-!index.html
+!/index.js
+!/index.html

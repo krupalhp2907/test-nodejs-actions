@@ -1,11 +1,11 @@
 {
-  "name": "expresscheckout-nodejs-sample-project",
+  "name": "expresscheckout-nodejs-sdk-sample-project-not-official",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "test": ""
+    "test": "node index"
   },
   "keywords": [],
   "author": "",
