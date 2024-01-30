@@ -1,5 +1,4 @@
 const fs = require('fs')
-const express = require('express')
 const { Juspay, APIError } = require('expresscheckout-nodejs')
 
 /**
@@ -32,17 +31,9 @@ const juspay = new Juspay({
 })
 
 /**
- * initialize server
- */
-const app = express()
-const port = process.env.PORT || 5000
-
-app.use(express.urlencoded({ extended: true }))
-
-/**
  * route:- initiateJuspayPayment
  */
-app.post('/initiateJuspayPayment', async (req, res) => {
+async function initiateJuspayPayment(req, res) {
     const orderId = `order_${Date.now()}`
     const amount = 1 + Math.random() * 100 | 0
 
@@ -69,12 +60,12 @@ app.post('/initiateJuspayPayment', async (req, res) => {
         }
         return res.json(makeError())
     }
-})
+}
 
 /**
  * route:- handleJuspayResponse
  */
-app.post('/handleJuspayResponse', async (req, res) => {
+async function handleJuspayResponse(req, res) {
     const orderId = req.body.order_id || req.body.orderId
 
     if (orderId == undefined) {
@@ -113,16 +104,7 @@ app.post('/handleJuspayResponse', async (req, res) => {
         }
         return res.json(makeError())
     }
-})
-
-
-app.get('/', function(req,res) {
-    return res.sendfile(path.join(__dirname, 'index.html'))
-});
-
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`)
-})
+}
 
 // Utitlity functions
 function makeError(message) {
@@ -135,4 +117,12 @@ function makeJuspayResponse(successRspFromJuspay) {
     if (successRspFromJuspay == undefined) return successRspFromJuspay
     if (successRspFromJuspay.http != undefined) delete successRspFromJuspay.http
     return successRspFromJuspay
+}
+
+module.exports = {
+    makeJuspayResponse,
+    handleJuspayResponse,
+    initiateJuspayPayment,
+    SANDBOX_BASE_URL,
+    PRODUCTION_BASE_URL
 }
