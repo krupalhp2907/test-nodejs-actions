@@ -21,6 +21,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Create config.json file
+      id: create-json
+      uses: jsdaniell/create-json@v1.2.2
+      with:
+        name: "config.json"
+        json: ${{ secrets.CONFIG_JSON }}
+    - name: Create config.json file
+      id: create-public-key-file
+      uses: 1arp/create-a-file-action@0.3
+      with:
+        file: 'publicKey.pem'
+        content: ${{ secrets.PUBLIC_KEY }}
+    - name: Create config.json file
+      id: create-private-key-file
+      uses: 1arp/create-a-file-action@0.3
+      with:
+        file: 'privateKey.pem'
+        content: ${{ secrets.PRIVATE_KEY }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
