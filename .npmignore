@@ -1,0 +1,9 @@
+*
+!/CHANGELOG.md
+!/LICENSE
+!/README.md
+!/VERSION
+!/package.json
+!/dist/**/*
+!index.js
+!index.html
