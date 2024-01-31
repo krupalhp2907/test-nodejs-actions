@@ -1,16 +1,25 @@
 {
   "name": "expresscheckout-nodejs-sdk-sample-project-not-official",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "test": "node index"
+    "test": "node index",
+    "commit": "git add . && cz"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "expresscheckout-nodejs": "^1.0.0"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
